@@ -122,7 +122,171 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
 const LandingPage = () => {
   const navigate = useNavigate();
-  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [consoleOutput, setConsoleOutput] = useState([
+    'org.springframework.security.web.context.SecurityContextHolderFilter@3d3efa54',
+    'org.springframework.security.web.authentication.logout.LogoutFilter@703e8fe8',
+    'org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@145baec6',
+    'org.springframework.security.web.session.ConcurrentSessionFilter@433dd165',
+    'org.springframework.security.web.savedrequest.RequestCacheAwareFilter@340a5c52',
+    'org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@6e0a0baa',
+    'org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d74313a',
+    'org.springframework.security.web.session.SessionManagementFilter@7fe68a5',
+    '2025-05-28T13:10:04.858+05:30 INFO 1076 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer : Tomcat started on port 1212 (http) with context path',
+    '2025-05-28T13:10:04.880+05:30 INFO 1076 --- [main] c.e.mahakumbh.MahakumbhApplication : Started MahakumbhApplication in 16.642 seconds (process running for 17.874)'
+  ]);
+
+  const [jarData] = useState([
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\gccloudDevTrial.jar',
+      website: "Don't delete its for just for test",
+      port: '9878',
+      domain: 'Derick Nienow',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\namami.jar',
+      website: 'Namami Gange',
+      port: '2020',
+      domain: 'https://namami.iwrdup.com',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: false
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\jalshakti.jar2.jar',
+      website: 'jalshakti',
+      port: '7070',
+      domain: 'https://jalshakti.iwrdup.com/',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\jalnoc.jar',
+      website: 'Jal Avantan Noc',
+      port: '8585',
+      domain: 'https://jalnoc.iwrdup.com/',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\organization.jar',
+      website: 'Monitoring',
+      port: '5050',
+      domain: 'monitor.iwrdup.com',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: false
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\PragatiPortal.jar',
+      website: 'Pragati Portal',
+      port: '8080',
+      domain: 'https://pragati.iwrdup.com/',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\Mahakumbh-0.0.1-SNAPSHOT.jar',
+      website: 'Mahakumbh 2',
+      port: '4545',
+      domain: 'https://kumbh.iwrdup.com/',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\NC_RO_Gen_Service-0.0.1-SNAPSHOT.jar',
+      website: 'ncro',
+      port: '7575',
+      domain: 'ncro.goodwillCommunication.com',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: false
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\upidSocchna-0.0.1-SNAPSHOT.jar',
+      website: 'UP Soochna',
+      port: '2525',
+      domain: 'https://admin.upidgov.in',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\BhaiNewsNotification.jar',
+      website: 'Bhai App',
+      port: '8081',
+      domain: 'No Domain',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: false
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\Upfsda.jar',
+      website: 'UPFSDA',
+      port: '5151',
+      domain: 'https://upfsda.gccloud.in/upfsda/login',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    },
+    {
+      jar: 'C:\\Users\\Administrator\\Desktop\\JarTesting\\IWRDUP_JAR.jar',
+      website: 'https://water.iwrdup.com/',
+      port: '6060',
+      domain: 'water.iwrdup.com',
+      sslStatus: 'SSL Status',
+      runningStatus: 'Check Status',
+      tpStatus: 'TP Status',
+      domainLink: '',
+      isRunning: true
+    }
+  ]);
+
+  const filteredData = jarData.filter(item => 
+    item.jar.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.website.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.domain.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const handleAction = (action, jar) => {
+    console.log(`${action} action for:`, jar);
+    const newOutput = `[${new Date().toLocaleTimeString()}] ${action.toUpperCase()} command executed for ${jar.website}`;
+    setConsoleOutput(prev => [...prev, newOutput]);
+  };
+
+  const handleExport = (type) => {
+    console.log(`Exporting data as ${type}`);
+  };
+
   const featureCards = [
     {
       title: 'KILLER DNS MANAGER',
@@ -158,12 +322,13 @@ const LandingPage = () => {
 
   return (
     <div className="p-6">
+      {/* Feature Cards Section */}
       <div className="mb-8">
         <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Welcome to Killer Jar Portal</h2>
         <p className="text-gray-600 dark:text-gray-400">Manage your applications, domains, and deployments all in one place.</p>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {featureCards.map((card, index) => (
           <div
             key={index}
@@ -188,6 +353,136 @@ const LandingPage = () => {
             </div>
           </div>
         ))}
+      </div>
+
+      {/* JAR Management Table Section */}
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+        <div className="p-6">
+          {/* Export buttons and Search */}
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+            <div className="flex space-x-2">
+              <button 
+                onClick={() => handleExport('copy')}
+                className="px-4 py-2 bg-gray-600 hover:bg-gray-700 text-white rounded-lg transition-colors"
+              >
+                Copy
+              </button>
+              <button 
+                onClick={() => handleExport('excel')}
+                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
+              >
+                Excel
+              </button>
+              <button 
+                onClick={() => handleExport('print')}
+                className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+              >
+                Print
+              </button>
+            </div>
+            
+            <div className="flex items-center space-x-2">
+              <label className="text-gray-700 dark:text-gray-300">Search:</label>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
+                placeholder="Search..."
+              />
+            </div>
+          </div>
+
+          {/* JAR Management Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="bg-gray-700 dark:bg-gray-900">
+                  <th className="text-left py-3 px-4 font-semibold text-white">JAR</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">WEBSITE</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">PORT</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">DOMAIN</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">SSL STATUS</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">RUNNING STATUS</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">TP LINK</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">DOMAIN LINK</th>
+                  <th className="text-left py-3 px-4 font-semibold text-white">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredData.map((item, index) => (
+                  <tr key={index} className="border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700">
+                    <td className="py-3 px-4 text-gray-900 dark:text-white text-sm">{item.jar}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.website}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.port}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.domain}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.sslStatus}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.runningStatus}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.tpStatus}</td>
+                    <td className="py-3 px-4 text-gray-900 dark:text-white">{item.domainLink}</td>
+                    <td className="py-3 px-4">
+                      <div className="flex space-x-1">
+                        <button
+                          onClick={() => handleAction('play', item)}
+                          className={`p-2 rounded transition-colors ${
+                            item.isRunning 
+                              ? 'bg-green-600 hover:bg-green-700' 
+                              : 'bg-gray-600 hover:bg-gray-700'
+                          } text-white`}
+                          title="Play/Start"
+                        >
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleAction('pause', item)}
+                          className="p-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded transition-colors"
+                          title="Pause"
+                        >
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                          </svg>
+                        </button>
+                        <button
+                          onClick={() => handleAction('upload', item)}
+                          className="p-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors"
+                          title="Upload"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                          </svg>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          
+          <div className="mt-4 text-sm text-gray-600 dark:text-gray-400">
+            Showing 1 to {filteredData.length} of {jarData.length} entries
+          </div>
+        </div>
+      </div>
+
+      {/* Real-time CMD Console */}
+      <div className="mt-8 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+        <div className="p-6">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">REAL-TIME CMD CONSOLE</h3>
+          <div className="bg-black rounded-lg p-4 h-64 overflow-y-auto">
+            <div className="flex items-center mb-2">
+              <span className="text-green-400 mr-2">CMD 1</span>
+              <button className="text-red-400 hover:text-red-300">×</button>
+            </div>
+            <div className="text-green-400 text-sm font-mono">
+              {consoleOutput.map((line, index) => (
+                <div key={index} className="mb-1">{line}</div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
